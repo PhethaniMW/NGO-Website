@@ -3,46 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donations - Thusa Lushaka Empowerment</title>
+    <title>Thusa Lushaka Empowerment</title>
     <style>
-        body, html {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            background-color: #003366;
-            text-align: center;
         }
 
-        .container {
-            padding: 50px;
-        }
-
+        /* Navigation bar */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #003366;
             color: white;
-            padding: 15px 20px;
-            width: 100%;
+            padding: 10px 20px;
             text-align: center;
         }
         .navbar a {
             color: white;
-            margin: 0 15px;
+            padding: 14px 20px;
             text-decoration: none;
             text-transform: uppercase;
         }
         .navbar a:hover {
-            color: #ff0000;
+            background-color: #333;
+            color: white;
         }
 
+        /* Slideshow for background */
+        .header {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slideshow {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            animation: slideshow 15s infinite;
+        }
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes slideshow {
+            0% { opacity: 1; }
+            33% { opacity: 0; }
+            66% { opacity: 1; }
+        }
+
+        /* Overlay text section */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .overlay h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .overlay p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            width: 80%;
+        }
+
+        /* Emoji Section */
+        .circles-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
         .footer {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #003366;
             color: white;
             padding: 10px 20px;
-            width: 100%;
             text-align: center;
-            position: fixed;
-            bottom: 0;
         }
         .footer a {
             color: #ffffff;
@@ -54,38 +117,36 @@
     </style>
 </head>
 <body>
-
     <!-- Navigation bar -->
     <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="ThusaLushaka.html">Home</a>
+        <a href="awards.html">Awards</a>
         <a href="projects.html">Projects</a>
-        <a href="donations.html">Donations</a>
-        <a href="contact.html">Contact</a>
+        <a href="Donations.html">Donations</a>
+        <a href="pageants.html">Pageants</a>
     </div>
 
-    <!-- Donations content -->
-    <div class="container">
-        <h2>Support Us with Your Donations</h2>
-        <p>Your contributions help us make a positive impact on the lives of young people. Thank you for your support!</p>
-        <h3>Bank Details:</h3>
-        <p>Bank: FNB GOLD BUSINESS<br>
-        Account Name: Thusa Lushaka Empowerment<br>
-        Account Number: 63053400172<br>
-        Branch Code: 123456</p>
-
-        <h3>For Acknowledgement:</h3>
-        <p>Please send a confirmation email to: <a href="thusalushakaempowerment@gmail.com">thusalushakaempowerment@gmail.com</a></p>
+    <!-- Header -->
+    <div class="header">
+        <div class="slideshow">
+            <img src="IMG-20240823-WA0016.jpg" alt="Image 1"> <!-- Replace with actual paths -->
+            <img src="IMG-20240823-WA0019.jpg" alt="Image 2"> <!-- Replace with actual paths -->
+            <img src="IMG-20240823-WA0022.jpg" alt="Image 3"> <!-- Replace with actual paths -->
+        </div>
+        <div class="overlay">
+            <h1>Thusa Lushaka Empowerment</h1>
+            <p>Empowering the youth educationally, socially, and spiritually. Helping those in need to elevate their standard of living.</p>
+            <div class="circles-container">
+                <div class="circle">Mission</div>
+                <div class="circle">Vision</div>
+                <div class="circle">Impact</div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <p>Follow us on social media: 
-            <a href="#">Facebook</a> | 
-            <a href="#">TikTok</a> | 
-        </p>
         <p>&copy; 2024 Thusa Lushaka Empowerment. All rights reserved.</p>
     </div>
-
 </body>
 </html>

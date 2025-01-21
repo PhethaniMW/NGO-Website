@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awards - Thusa Lushaka Empowerment</title>
+    <title>Awards Gallery - Thusa Lushaka Empowerment</title>
     <style>
         body, html {
             margin: 0;
@@ -20,6 +20,9 @@
             padding: 15px 20px;
             width: 100%;
             text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
         .navbar a {
             color: white;
@@ -31,87 +34,64 @@
             color: #ff0000;
         }
 
-        /* Slideshow container */
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-            margin-top: 50px;
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 80px;
+            gap: 15px;
+        }
+        .gallery img {
+            width: 250px;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
         }
 
-        /* Hide the images by default */
-        .mySlides {
+        .modal {
             display: none;
-        }
-
-        /* Next & previous buttons */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-        }
-
-        /* Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        /* Caption text */
-        .text {
-            color: #f2f2f2;
-            font-size: 15px;
-            padding: 8px 12px;
-            position: absolute;
-            bottom: 8px;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
             width: 100%;
-            text-align: center;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
-        /* Dots/bullets/indicators */
-        .dot {
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
             cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
         }
 
-        .active {
-            background-color: #717171;
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
         }
 
-        /* Fade animation */
-        .fade {
-            -webkit-animation-name: fade;
-            -webkit-animation-duration: 1.5s;
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @-webkit-keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-
-        /* Footer */
         .footer {
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
@@ -120,6 +100,7 @@
             text-align: center;
             position: fixed;
             bottom: 0;
+            z-index: 1000;
         }
         .footer a {
             color: #ffffff;
@@ -141,36 +122,19 @@
         <a href="contact.html">Contact</a>
     </div>
 
-    <!-- Slideshow container -->
-    <div class="slideshow-container">
-
-        <!-- Full-width images with number and caption text -->
-        <div class="mySlides fade">
-            <img src="IMG-20240823-WA0016.jpg" style="width:100%"> <!-- Replace with actual image path -->
-            <div class="text">Award Ceremony 1</div>
-        </div>
-
-        <div class="mySlides fade">
-            <img src="IMG-20240823-WA0018.jpg" style="width:100%"> <!-- Replace with actual image path -->
-            <div class="text">Award Ceremony 2</div>
-        </div>
-
-        <div class="mySlides fade">
-            <img src="IMG-20240823-WA0037.jpg" style="width:100%"> <!-- Replace with actual image path -->
-            <div class="text">Award Ceremony 3</div>
-        </div>
-
-        <!-- Next and previous buttons -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <!-- Gallery Section -->
+    <div class="gallery">
+        <img src="IMG-20240823-WA0016.jpg" alt="Award Ceremony" onclick="openModal(this.src)">
+        <img src="IMG-20240823-WA0018.jpg" alt="Award Ceremony" onclick="openModal(this.src)">
+        <img src="IMG-20240823-WA0037.jpg" alt="Award Ceremony" onclick="openModal(this.src)">
     </div>
-    <br>
 
-    <!-- The dots/circles -->
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span> 
-        <span class="dot" onclick="currentSlide(2)"></span> 
-        <span class="dot" onclick="currentSlide(3)"></span> 
+    <!-- Modal for Full-Size Image -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Full-size">
+        </div>
     </div>
 
     <!-- Footer -->
@@ -184,31 +148,13 @@
     </div>
 
     <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
+        function openModal(src) {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('modalImage').src = src;
         }
 
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}    
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";  
-            dots[slideIndex-1].className += " active";
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
         }
     </script>
 
